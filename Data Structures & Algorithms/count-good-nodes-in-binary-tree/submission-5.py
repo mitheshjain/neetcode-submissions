@@ -1,0 +1,26 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        
+        q=deque()
+        q.append((root,-101))
+        maxVal=-101
+        res=0
+        while q:
+
+            
+            curr,maxval=q.popleft()
+            if curr.val>=maxval:
+                res+=1
+                maxval=curr.val
+            if curr.left:
+                q.append((curr.left,maxval))
+            if curr.right:
+                q.append((curr.right,maxval))
+        return res
